@@ -1,0 +1,15 @@
+doctype html
+html(lang="en")
+  head
+    title Simple htmX To-Do List
+    link(href="/styles.css" rel="stylesheet")
+    link(rel="icon" href="favicon.ico" type="image/x-icon")
+    script(src="https://cdn.tailwindcss.com")
+  body
+  div.w-screen.h-screen.bg-gray-100
+    div.container.mx-auto.px-10
+      include _add
+      form.sortable(id="tasks" hx-trigger="end" hx-post="/todos/drag")
+        div(hx-get='/todos' hx-trigger="load" hx-swap='outerHTML')
+          p.flex.items-center.my-3.justify-center.htmx-indicator Loading...
+  include _scripts

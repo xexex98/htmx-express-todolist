@@ -1,0 +1,22 @@
+script(src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous")
+script(src="https://unpkg.com/hyperscript.org@0.9.12")
+script(src="https://raw.githack.com/SortableJS/Sortable/master/Sortable.js")
+script.
+	htmx.onLoad(function(content) {
+		var sortables = content.querySelectorAll(".sortable");
+
+		for (var i = 0; i < sortables.length; i++) {
+			var sortable = sortables[i];
+			var sortableInstance = new Sortable(sortable, {
+				animation: 150,
+				group: 'shared',
+				ghostClass: 'bg-red-100',
+				onEnd: function (evt) {
+					this.option("disabled", true);
+				},
+			});
+			sortable.addEventListener("htmx:afterSwap", function() {
+				sortableInstance.option("disabled", false);
+			});
+		}
+	})

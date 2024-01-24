@@ -1,0 +1,16 @@
+include _mixins
+if !todo
+	p.flex.items-center.my-3.justify-center Some Error in Todos Data!
+else if (!todo.length) 
+	p.flex.items-center.my-3.justify-center All Done!!!
+else
+	each task in todo
+		p #{a}
+		div.flex.gap-3.border-b-2.my-2.justify-between.p-3.rounded.break-all.shadow-sm(class=task.status === "start" ? 'bg-white' : 'bg-green-200')
+			input(type='hidden' name='items' value=task.id)
+			p #{task.name}
+			div.flex.gap-2.justify-center.items-center
+				button(type="button" hx-delete="/todos/delete/"+task.id hx-target="#tasks") 
+					+icon-delete()
+				button(type="button" hx-put=`/todos/${task.id}` hx-target="#tasks")
+					+icon-plus()
