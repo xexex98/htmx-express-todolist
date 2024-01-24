@@ -1,13 +1,12 @@
 {
-  "name": "htmx-cat",
+  "name": "htmx-express-todolist",
   "version": "1.0.0",
   "description": "",
   "main": "index.cjs",
   "scripts": {
-    "server": "nodemon index.cjs",
-    "tailwind:css": "postcss assets/tailwind.css -o assets/styles.css --watch"
+    "server": "nodemon index.cjs"
   },
-  "author": "",
+  "author": "xexex98",
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^3.0.2"
